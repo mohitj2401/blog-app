@@ -11,13 +11,18 @@ class AppTheme {
       );
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
-      scaffoldBackgroundColor: AppPallete.backgroundColor,
-      inputDecorationTheme: InputDecorationTheme(
-        contentPadding: const EdgeInsets.all(27),
-        enabledBorder: _border(),
-        focusedBorder: _border(color: AppPallete.gradient2),
-      ),
-      appBarTheme: AppBarTheme(backgroundColor: AppPallete.backgroundColor));
+    scaffoldBackgroundColor: AppPallete.backgroundColor,
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: const EdgeInsets.all(27),
+      enabledBorder: _border(),
+      focusedBorder: _border(color: AppPallete.gradient2),
+    ),
+    appBarTheme: AppBarTheme(backgroundColor: AppPallete.backgroundColor),
+    chipTheme: ChipThemeData(
+      color: MaterialStatePropertyAll(AppPallete.backgroundColor),
+      side: BorderSide.none,
+    ),
+  );
 
   static final ThemeData lightTheme = ThemeData.light();
 }

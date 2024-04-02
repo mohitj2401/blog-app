@@ -50,8 +50,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  _isUserLoggedIn(AuthLoggedIn event, Emitter<AuthState> emit) async {
+  _isUserLoggedIn(event, emit) async {
     final res = await _currentUser(NoParams());
+
     res.fold(
       (l) => {emit(AuthFailure(message: l.message))},
       (r) {
