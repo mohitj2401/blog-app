@@ -6,12 +6,6 @@ part 'app_user_state.dart';
 
 class AppUserCubit extends Cubit<AppUserState> {
   AppUserCubit() : super(AppUserInitial());
-  @override
-  void onChange(Change<AppUserState> change) {
-    print("$change");
-    // TODO: implement onChange
-    super.onChange(change);
-  }
 
   void updateUser(User? user) {
     if (user == null) {

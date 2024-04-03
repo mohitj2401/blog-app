@@ -32,6 +32,8 @@ class AuthDataSourceImp implements AuthDataSource {
       }
 
       return UserModel.fromJson(response.user!.toJson());
+    } on AuthException catch (e) {
+      throw ServerException(e.message);
     } catch (e) {
       throw ServerException(e.toString());
     }
@@ -51,6 +53,8 @@ class AuthDataSourceImp implements AuthDataSource {
         throw ServerException("user is null!");
       }
       return UserModel.fromJson(response.user!.toJson());
+    } on AuthException catch (e) {
+      throw ServerException(e.message);
     } catch (e) {
       throw ServerException(e.toString());
     }
@@ -68,6 +72,8 @@ class AuthDataSourceImp implements AuthDataSource {
             .copyWith(email: currentSession!.user.email);
       }
       return null;
+    } on AuthException catch (e) {
+      throw ServerException(e.message);
     } catch (e) {
       throw ServerException(e.toString());
     }

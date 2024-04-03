@@ -22,7 +22,7 @@ class BlogEditor extends StatelessWidget {
       ),
       validator: (val) {
         if (val!.isEmpty) {
-          return "{$hintText is required}";
+          return "$hintText is required";
         }
         return null;
       },
