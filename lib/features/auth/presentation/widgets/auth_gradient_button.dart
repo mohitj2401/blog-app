@@ -18,17 +18,17 @@ class AuthGradientButton extends StatelessWidget {
       ),
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(
-          buttonText,
-          style: TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
         style: ElevatedButton.styleFrom(
           fixedSize: const Size(393, 33),
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
+        ),
+        child: Text(
+          buttonText,
+          style: const TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );

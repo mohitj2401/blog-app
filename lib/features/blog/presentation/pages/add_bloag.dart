@@ -5,14 +5,10 @@ import 'package:blog_app/core/common/widgets/loader.dart';
 import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/pic_image.dart';
 import 'package:blog_app/core/utils/show_snackbar.dart';
-import 'package:blog_app/features/blog/domain/usecases/upload_blog.dart';
 import 'package:blog_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:blog_app/features/blog/presentation/widgets/blog_editor.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddBlogPage extends StatefulWidget {
@@ -67,9 +63,9 @@ class _AddBlogPageState extends State<AddBlogPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Blog"),
+        title: const Text("Add Blog"),
         actions: [
-          IconButton(onPressed: uploadBlog, icon: Icon(Icons.done)),
+          IconButton(onPressed: uploadBlog, icon: const Icon(Icons.done)),
         ],
       ),
       body: BlocConsumer<BlogBloc, BlogState>(
@@ -114,10 +110,10 @@ class _AddBlogPageState extends State<AddBlogPage> {
                               radius: const Radius.circular(10),
                               borderType: BorderType.RRect,
                               strokeCap: StrokeCap.round,
-                              child: Container(
+                              child: const SizedBox(
                                 height: 200,
                                 width: double.infinity,
-                                child: const Column(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
@@ -136,7 +132,7 @@ class _AddBlogPageState extends State<AddBlogPage> {
                               ),
                             ),
                           ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     SingleChildScrollView(
@@ -176,14 +172,14 @@ class _AddBlogPageState extends State<AddBlogPage> {
                             .toList(),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     BlogEditor(
                       controller: titleController,
                       hintText: "Blog Title",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     BlogEditor(

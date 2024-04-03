@@ -1,12 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:io';
 
 import 'package:blog_app/features/blog/domain/entity/blog.dart';
 
-import 'package:blog_app/core/common/entity/user.dart';
 import 'package:blog_app/core/error/failure.dart';
 import 'package:blog_app/core/usercase/usecase.dart';
-import 'package:blog_app/features/auth/domain/repository/auth.dart';
 import 'package:blog_app/features/blog/domain/repository/blog_rapo.dart';
 import 'package:fpdart/fpdart.dart';
 

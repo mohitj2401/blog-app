@@ -1,10 +1,7 @@
 import 'package:blog_app/core/utils/calculate_reading_time.dart';
-import 'package:blog_app/features/blog/data/models/blog_model.dart';
 import 'package:blog_app/features/blog/domain/entity/blog.dart';
 import 'package:blog_app/features/blog/presentation/pages/blog_detail_page.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class BlogCard extends StatelessWidget {
   final Color color;

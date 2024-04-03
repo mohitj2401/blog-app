@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpPage extends StatefulWidget {
-  static route() => MaterialPageRoute(builder: (context) => SignUpPage());
+  static route() => MaterialPageRoute(builder: (context) => const SignUpPage());
   const SignUpPage({super.key});
 
   @override
@@ -36,7 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(15.0),
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is AuthFailure) {
@@ -57,24 +57,24 @@ class _SignUpPageState extends State<SignUpPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Sign Up.",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   AuthField(
                     hintText: "Name",
                     controller: nameTextEditingController,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   AuthField(
                       hintText: "Email",
                       controller: emailTextEditingController),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   AuthField(
@@ -82,7 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: passwordTextEditingController,
                     obscureText: true,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   AuthGradientButton(
@@ -99,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   RichText(

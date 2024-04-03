@@ -7,11 +7,10 @@ import 'package:blog_app/features/auth/presentation/widgets/auth_field.dart';
 import 'package:blog_app/features/auth/presentation/widgets/auth_gradient_button.dart';
 import 'package:blog_app/features/blog/presentation/pages/blog_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignInPage extends StatefulWidget {
-  static route() => MaterialPageRoute(builder: (context) => SignInPage());
+  static route() => MaterialPageRoute(builder: (context) => const SignInPage());
   const SignInPage({super.key});
 
   @override
@@ -58,17 +57,17 @@ class _SignInPageState extends State<SignInPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Sign In.",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   AuthField(
                       hintText: "Email",
                       controller: emailTextEditingController),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   AuthField(
@@ -76,7 +75,7 @@ class _SignInPageState extends State<SignInPage> {
                     controller: passwordTextEditingController,
                     obscureText: true,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   AuthGradientButton(
@@ -92,7 +91,7 @@ class _SignInPageState extends State<SignInPage> {
                         }
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   GestureDetector(
