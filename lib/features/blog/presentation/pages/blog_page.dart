@@ -47,6 +47,7 @@ class _BlogPageState extends State<BlogPage> {
         listener: (context, state) {
           if (state is BlogFailure) {
             showSnackBar(context, state.message);
+            context.read<BlogBloc>().add(GetAllBlog());
           }
         },
         builder: (context, state) {
