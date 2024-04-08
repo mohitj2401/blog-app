@@ -1,8 +1,11 @@
+import 'package:blog_app/core/common/entity/user.dart';
 import 'package:blog_app/core/common/widgets/loader.dart';
 import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/show_snackbar.dart';
+import 'package:blog_app/features/auth/data/models/user_model.dart';
+import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:blog_app/features/blog/presentation/bloc/blog_bloc.dart';
-import 'package:blog_app/features/blog/presentation/pages/add_bloag.dart';
+import 'package:blog_app/features/blog/presentation/pages/add_blog.dart';
 import 'package:blog_app/features/blog/presentation/widgets/blog_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +20,12 @@ class BlogPage extends StatefulWidget {
 }
 
 class _BlogPageState extends State<BlogPage> {
+  late User userModel;
   @override
   void initState() {
     super.initState();
     context.read<BlogBloc>().add(GetAllBlog());
+    userModel = (context.read<AuthBloc>().state as AuthSuccess).user;
   }
 
   @override
@@ -36,10 +41,11 @@ class _BlogPageState extends State<BlogPage> {
         title: const Text("Blog App"),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.push(context, AddBlogPage.route());
-              },
-              icon: const Icon(CupertinoIcons.add_circled)),
+            onPressed: () {
+              Navigator.push(context, AddBlogPage.route());
+            },
+            icon: const Icon(CupertinoIcons.add_circled),
+          ),
         ],
       ),
       body: BlocConsumer<BlogBloc, BlogState>(
@@ -62,6 +68,7 @@ class _BlogPageState extends State<BlogPage> {
                   color: index % 3 == 0
                       ? AppPallete.gradient1
                       : AppPallete.gradient2,
+                  userId: userModel.id,
                 );
               },
             );
