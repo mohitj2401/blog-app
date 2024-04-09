@@ -62,9 +62,12 @@ Future<void> _initBlog() async {
 
   serviceLocator.registerFactory(() => EditBlog(serviceLocator()));
 
+  serviceLocator.registerFactory(() => DeleteBlogCase(serviceLocator()));
+
   serviceLocator.registerLazySingleton(() => BlogBloc(
         uploadBlog: serviceLocator(),
         getBlogs: serviceLocator(),
         editBlog: serviceLocator(),
+        deleteBlog: serviceLocator(),
       ));
 }

@@ -10,6 +10,8 @@ abstract interface class BlogRemoteDataSource {
   Future<List<BlogModel>> getBlogs();
   Future<String> uploadBlogImage(File file, BlogModel blogModel);
   Future<String> editBlogImage(File file, BlogModel blogModel);
+  Future<bool> deleteBlogImage(String imageUrl);
+  Future<bool> deleteBlog(String id);
 }
 
 class BlogRemoteDataSourceImp implements BlogRemoteDataSource {
@@ -92,6 +94,31 @@ class BlogRemoteDataSourceImp implements BlogRemoteDataSource {
       return supabaseClient.storage
           .from('blog_images')
           .getPublicUrl(blogModel.id);
+    } on StorageException catch (e) {
+      throw ServerException(e.message);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<bool> deleteBlogImage(String id) async {
+    try {
+      await supabaseClient.storage.from('blog_images').remove([id]);
+
+      return true;
+    } on StorageException catch (e) {
+      throw ServerException(e.message);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<bool> deleteBlog(String id) async {
+    try {
+      await supabaseClient.from('blogs').delete().eq('id', id);
+      return true;
     } on StorageException catch (e) {
       throw ServerException(e.message);
     } catch (e) {

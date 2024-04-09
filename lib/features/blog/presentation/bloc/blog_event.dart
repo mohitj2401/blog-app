@@ -36,3 +36,10 @@ final class EditBlogBloc extends BlogEvent {
     required this.topics,
   });
 }
+
+final class DeleteBlogEvent extends BlogEvent {
+  final String id;
+  final String imageUrl;
+
+  DeleteBlogEvent({required this.id, required this.imageUrl});
+}

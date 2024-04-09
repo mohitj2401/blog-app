@@ -6,6 +6,7 @@ import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/pic_image.dart';
 import 'package:blog_app/core/utils/show_snackbar.dart';
 import 'package:blog_app/features/blog/presentation/bloc/blog_bloc.dart';
+import 'package:blog_app/features/blog/presentation/pages/blog_page.dart';
 import 'package:blog_app/features/blog/presentation/widgets/blog_editor.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +75,8 @@ class _AddBlogPageState extends State<AddBlogPage> {
             showSnackBar(context, state.message);
           }
           if (state is BlogSuccess) {
-            Navigator.pop(context);
+            Navigator.pushAndRemoveUntil(
+                context, BlogPage.route(), (route) => false);
           }
         },
         builder: (context, state) {

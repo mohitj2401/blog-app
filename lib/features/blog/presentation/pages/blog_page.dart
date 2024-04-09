@@ -54,6 +54,9 @@ class _BlogPageState extends State<BlogPage> {
             showSnackBar(context, state.message);
             context.read<BlogBloc>().add(GetAllBlog());
           }
+          if (state is BlogDeleteSuccess) {
+            context.read<BlogBloc>().add(GetAllBlog());
+          }
         },
         builder: (context, state) {
           if (state is BlogLoading) {

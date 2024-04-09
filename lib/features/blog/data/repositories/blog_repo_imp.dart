@@ -101,4 +101,22 @@ class BlogRepositoryImp implements BlogRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> deleteBlog(
+      {required String id, required String imageUrl}) async {
+    try {
+      if (!await connectionChecker.isConnected) {
+        return left(Failure("No Interbet Connection"));
+      }
+
+      await blogRemoteDataSource.deleteBlogImage(id);
+
+      await blogRemoteDataSource.deleteBlog(id);
+
+      return right(true);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

@@ -1,10 +1,12 @@
 import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/calculate_reading_time.dart';
 import 'package:blog_app/features/blog/domain/entity/blog.dart';
+import 'package:blog_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:blog_app/features/blog/presentation/pages/add_blog.dart';
 import 'package:blog_app/features/blog/presentation/pages/blog_detail_page.dart';
 import 'package:blog_app/features/blog/presentation/pages/edit_blog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BlogCard extends StatelessWidget {
   final Color color;
@@ -62,16 +64,31 @@ class BlogCard extends StatelessWidget {
               children: [
                 Text('${calculateReadingTime(blog.content)} min'),
                 if (blog.userId == userId)
-                  IconButton(
-                    onPressed: () =>
-                        Navigator.push(context, EditBlogPage.route(blog)),
-                    icon: const Icon(
-                      Icons.edit_note,
-                      size: 25,
-                      weight: 4,
-                      color: AppPallete.backgroundColor,
-                    ),
-                  )
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () =>
+                            Navigator.push(context, EditBlogPage.route(blog)),
+                        icon: const Icon(
+                          Icons.edit_note,
+                          size: 25,
+                          weight: 4,
+                          color: AppPallete.backgroundColor,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () => context.read<BlogBloc>().add(
+                            DeleteBlogEvent(
+                                id: blog.id, imageUrl: blog.imageUrl)),
+                        icon: const Icon(
+                          Icons.delete,
+                          size: 25,
+                          weight: 4,
+                          color: AppPallete.backgroundColor,
+                        ),
+                      )
+                    ],
+                  ),
               ],
             )
           ],
