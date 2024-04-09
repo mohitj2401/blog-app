@@ -2,7 +2,6 @@ import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/calculate_reading_time.dart';
 import 'package:blog_app/features/blog/domain/entity/blog.dart';
 import 'package:blog_app/features/blog/presentation/bloc/blog_bloc.dart';
-import 'package:blog_app/features/blog/presentation/pages/add_blog.dart';
 import 'package:blog_app/features/blog/presentation/pages/blog_detail_page.dart';
 import 'package:blog_app/features/blog/presentation/pages/edit_blog.dart';
 import 'package:flutter/material.dart';
