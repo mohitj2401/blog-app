@@ -1,3 +1,4 @@
+import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/calculate_reading_time.dart';
 import 'package:blog_app/features/blog/domain/entity/blog.dart';
 import 'package:blog_app/features/blog/presentation/pages/add_blog.dart';
@@ -60,15 +61,17 @@ class BlogCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('${calculateReadingTime(blog.content)} min'),
-                IconButton(
-                  onPressed: () =>
-                      Navigator.push(context, EditBlogPage.route(blog)),
-                  icon: const Icon(
-                    Icons.edit_note,
-                    size: 20,
-                    weight: 4,
-                  ),
-                )
+                if (blog.userId == userId)
+                  IconButton(
+                    onPressed: () =>
+                        Navigator.push(context, EditBlogPage.route(blog)),
+                    icon: const Icon(
+                      Icons.edit_note,
+                      size: 25,
+                      weight: 4,
+                      color: AppPallete.backgroundColor,
+                    ),
+                  )
               ],
             )
           ],

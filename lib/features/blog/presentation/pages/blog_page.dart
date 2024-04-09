@@ -60,17 +60,22 @@ class _BlogPageState extends State<BlogPage> {
             return const Loader();
           }
           if (state is BlogDisplaySuccess) {
-            return ListView.builder(
-              itemCount: state.blogs.length,
-              itemBuilder: (context, index) {
-                return BlogCard(
-                  blog: state.blogs[index],
-                  color: index % 3 == 0
-                      ? AppPallete.gradient1
-                      : AppPallete.gradient2,
-                  userId: userModel.id,
-                );
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<BlogBloc>().add(GetAllBlog());
               },
+              child: ListView.builder(
+                itemCount: state.blogs.length,
+                itemBuilder: (context, index) {
+                  return BlogCard(
+                    blog: state.blogs[index],
+                    color: index % 3 == 0
+                        ? AppPallete.gradient1
+                        : AppPallete.gradient2,
+                    userId: userModel.id,
+                  );
+                },
+              ),
             );
           }
 

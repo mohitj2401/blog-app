@@ -60,8 +60,11 @@ Future<void> _initBlog() async {
   serviceLocator.registerFactory(() => UploadBlog(serviceLocator()));
   serviceLocator.registerFactory(() => GetBlogs(serviceLocator()));
 
+  serviceLocator.registerFactory(() => EditBlog(serviceLocator()));
+
   serviceLocator.registerLazySingleton(() => BlogBloc(
         uploadBlog: serviceLocator(),
         getBlogs: serviceLocator(),
+        editBlog: serviceLocator(),
       ));
 }

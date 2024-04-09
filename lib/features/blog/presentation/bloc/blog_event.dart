@@ -19,3 +19,20 @@ final class BlogUpload extends BlogEvent {
 }
 
 final class GetAllBlog extends BlogEvent {}
+
+final class EditBlogBloc extends BlogEvent {
+  final String id;
+  final File image;
+  final String title;
+  final String content;
+  final String posterId;
+  final List<String> topics;
+  EditBlogBloc({
+    required this.id,
+    required this.image,
+    required this.title,
+    required this.content,
+    required this.posterId,
+    required this.topics,
+  });
+}

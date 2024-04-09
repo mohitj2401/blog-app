@@ -9,6 +9,8 @@ final class BlogLoading extends BlogState {}
 
 final class BlogSuccess extends BlogState {}
 
+final class BlogEditSuccess extends BlogState {}
+
 final class BlogFailure extends BlogState {
   final String message;
 

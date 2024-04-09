@@ -12,6 +12,7 @@ import 'package:blog_app/features/blog/data/datasources/blog_data_sources.dart';
 import 'package:blog_app/features/blog/data/datasources/blog_local_data_source.dart';
 import 'package:blog_app/features/blog/data/repositories/blog_repo_imp.dart';
 import 'package:blog_app/features/blog/domain/repository/blog_rapo.dart';
+import 'package:blog_app/features/blog/domain/usecases/edit_blog.dart';
 import 'package:blog_app/features/blog/domain/usecases/get_blogs.dart';
 import 'package:blog_app/features/blog/domain/usecases/upload_blog.dart';
 import 'package:blog_app/features/blog/presentation/bloc/blog_bloc.dart';
@@ -20,5 +21,4 @@ import 'package:hive/hive.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 part 'package:blog_app/dependancies/init_dependancy_main.dart';

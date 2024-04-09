@@ -66,4 +66,39 @@ class BlogRepositoryImp implements BlogRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, Blog>> editBlog(
+      {required String id,
+      required File image,
+      required String title,
+      required String content,
+      required String posterId,
+      required List<String> topics}) async {
+    try {
+      if (!await connectionChecker.isConnected) {
+        return left(Failure("No Interbet Connection"));
+      }
+      BlogModel blogModel = BlogModel(
+        id: id,
+        userId: posterId,
+        title: title,
+        content: content,
+        imageUrl: "",
+        topics: topics,
+        updatedAt: DateTime.now(),
+      );
+
+      final imageUrl =
+          await blogRemoteDataSource.editBlogImage(image, blogModel);
+
+      blogModel = blogModel.copyWith(imageUrl: imageUrl);
+
+      final uploadBlog = await blogRemoteDataSource.editBlog(blogModel);
+
+      return right(uploadBlog);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }
