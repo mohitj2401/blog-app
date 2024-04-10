@@ -63,4 +63,20 @@ class AuthRepositoryImp implements AuthRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> signOut() async {
+    try {
+      if (!(await connectionChecker.isConnected)) {
+        return left((Failure("Not internet Connection")));
+      }
+      final result = await authDataSource.logoutUser();
+      if (result == null || !result) {
+        return left(Failure("Login Expired"));
+      }
+      return right(result);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

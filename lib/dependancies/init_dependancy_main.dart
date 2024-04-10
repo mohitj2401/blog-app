@@ -36,10 +36,13 @@ Future<void> _initAuth() async {
 
   serviceLocator.registerFactory(() => CurrentUser(serviceLocator()));
 
+  serviceLocator.registerFactory(() => SignOutUser(serviceLocator()));
+
   serviceLocator.registerLazySingleton(() => AuthBloc(
         userSignUp: serviceLocator(),
         userSignIn: serviceLocator(),
         currentUser: serviceLocator(),
+        signOutUser: serviceLocator(),
         appUserCubit: serviceLocator(),
       ));
 }

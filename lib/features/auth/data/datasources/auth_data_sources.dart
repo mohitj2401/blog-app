@@ -11,6 +11,8 @@ abstract interface class AuthDataSource {
       {required String email, required String password});
 
   Future<UserModel?> getCurrentUser();
+
+  Future<bool?> logoutUser();
 }
 
 class AuthDataSourceImp implements AuthDataSource {
@@ -70,6 +72,21 @@ class AuthDataSourceImp implements AuthDataSource {
             .eq('id', currentSession!.user.id);
         return UserModel.fromJson(userData.first)
             .copyWith(email: currentSession!.user.email);
+      }
+      return null;
+    } on AuthException catch (e) {
+      throw ServerException(e.message);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<bool?> logoutUser() async {
+    try {
+      if (currentSession != null) {
+        await supabaseClient.auth.signOut();
+        return true;
       }
       return null;
     } on AuthException catch (e) {

@@ -5,6 +5,7 @@ import 'package:blog_app/features/auth/data/datasources/auth_data_sources.dart';
 import 'package:blog_app/features/auth/data/repositories/auth_repo_imp.dart';
 import 'package:blog_app/features/auth/domain/repository/auth.dart';
 import 'package:blog_app/features/auth/domain/usecases/current_user.dart';
+import 'package:blog_app/features/auth/domain/usecases/signout_user.dart';
 import 'package:blog_app/features/auth/domain/usecases/user_signin.dart';
 import 'package:blog_app/features/auth/domain/usecases/user_signup.dart';
 import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';

@@ -37,6 +37,7 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
     on<EditBlogBloc>(_editBlogDb);
     on<DeleteBlogEvent>(_deleteBlogDB);
   }
+
   _uploadBlogDb(BlogUpload event, Emitter<BlogState> emit) async {
     final res = await _uploadBlog(UploadBlogParams(
       image: event.image,

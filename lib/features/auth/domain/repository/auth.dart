@@ -9,4 +9,6 @@ abstract interface class AuthRepository {
   Future<Either<Failure, User>> signinWithEmailAndPassword(
       {required String email, required String password});
   Future<Either<Failure, User>> currentUSer();
+
+  Future<Either<Failure, bool>> signOut();
 }

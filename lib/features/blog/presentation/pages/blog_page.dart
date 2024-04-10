@@ -45,6 +45,12 @@ class _BlogPageState extends State<BlogPage> {
             },
             icon: const Icon(CupertinoIcons.add_circled),
           ),
+          IconButton(
+            onPressed: () {
+              context.read<AuthBloc>().add(AuthSignOut());
+            },
+            icon: const Icon(CupertinoIcons.add_circled),
+          ),
         ],
       ),
       body: BlocConsumer<BlogBloc, BlogState>(

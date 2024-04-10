@@ -7,6 +7,7 @@ import 'package:blog_app/features/blog/presentation/pages/blog_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 
@@ -57,6 +58,7 @@ class _MyAppState extends State<MyApp> {
             return const SignInPage();
           }
         },
+        bloc: AppUserCubit(),
       ),
     );
   }
