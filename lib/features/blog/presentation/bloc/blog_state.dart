@@ -24,3 +24,5 @@ final class BlogDisplaySuccess extends BlogState {
 
   BlogDisplaySuccess(this.blogs);
 }
+
+final class UserLogOutSuccess extends BlogState {}

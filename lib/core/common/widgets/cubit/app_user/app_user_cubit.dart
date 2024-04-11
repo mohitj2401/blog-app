@@ -18,11 +18,4 @@ class AppUserCubit extends Cubit<AppUserState> {
   void signOut() {
     emit(AppUserLoggedOut());
   }
-
-  @override
-  void onChange(Change<AppUserState> change) {
-    // TODO: implement onChange
-    super.onChange(change);
-    print(change);
-  }
 }

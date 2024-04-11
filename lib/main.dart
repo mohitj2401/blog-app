@@ -17,8 +17,8 @@ void main() async {
 
   runApp(MultiBlocProvider(
     providers: [
-      BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
       BlocProvider(create: (_) => serviceLocator<AppUserCubit>()),
+      BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
       BlocProvider(create: (_) => serviceLocator<BlogBloc>()),
     ],
     child: const MyApp(),
@@ -49,16 +49,15 @@ class _MyAppState extends State<MyApp> {
       theme: AppTheme.darkTheme,
       home: BlocSelector<AppUserCubit, AppUserState, bool>(
         selector: (state) {
-          return state is AppUserLoggedIn;
+          return (state is AppUserLoggedIn);
         },
-        builder: (context, isloggedIn) {
-          if (isloggedIn) {
+        builder: (context, isLoggedin) {
+          if (isLoggedin) {
             return const BlogPage();
           } else {
             return const SignInPage();
           }
         },
-        bloc: AppUserCubit(),
       ),
     );
   }

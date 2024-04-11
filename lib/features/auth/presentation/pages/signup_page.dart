@@ -46,6 +46,10 @@ class _SignUpPageState extends State<SignUpPage> {
             Navigator.pushAndRemoveUntil(
                 context, BlogPage.route(), (route) => false);
           }
+          if (state is AuthSignOutSuccess) {
+            Navigator.pushAndRemoveUntil(
+                context, SignInPage.route(), (route) => false);
+          }
         },
         builder: (context, state) {
           if (state is AuthLoading) {

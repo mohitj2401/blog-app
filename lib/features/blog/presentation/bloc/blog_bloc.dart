@@ -1,6 +1,9 @@
 import 'dart:io';
 
+import 'package:blog_app/core/common/widgets/cubit/app_user/app_user_cubit.dart';
 import 'package:blog_app/core/usercase/usecase.dart';
+import 'package:blog_app/features/auth/domain/usecases/signout_user.dart';
+import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:blog_app/features/blog/domain/entity/blog.dart';
 import 'package:blog_app/features/blog/domain/usecases/delete_blog.dart';
 import 'package:blog_app/features/blog/domain/usecases/edit_blog.dart';
@@ -17,16 +20,19 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
   final EditBlog _editBlog;
   final GetBlogs _getBlogs;
   final DeleteBlogCase _deleteBlog;
+  final AuthBloc _appUserCubit;
 
   BlogBloc({
     required UploadBlog uploadBlog,
     required GetBlogs getBlogs,
     required EditBlog editBlog,
     required DeleteBlogCase deleteBlog,
+    required AuthBloc appUserCubit,
   })  : _getBlogs = getBlogs,
         _uploadBlog = uploadBlog,
         _editBlog = editBlog,
         _deleteBlog = deleteBlog,
+        _appUserCubit = appUserCubit,
         super(BlogInitial()) {
     on<BlogEvent>((event, emit) {
       emit(BlogLoading());
@@ -36,6 +42,7 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
     on<GetAllBlog>(_getAllBlog);
     on<EditBlogBloc>(_editBlogDb);
     on<DeleteBlogEvent>(_deleteBlogDB);
+    on<UserLogout>(_userLogout);
   }
 
   _uploadBlogDb(BlogUpload event, Emitter<BlogState> emit) async {
@@ -82,5 +89,10 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
       (l) => emit(BlogFailure(l.message)),
       (r) => emit(BlogDisplaySuccess(r)),
     );
+  }
+
+  _userLogout(event, emit) async {
+    emit(UserLogOutSuccess());
+    _appUserCubit.add(AuthSignOut());
   }
 }

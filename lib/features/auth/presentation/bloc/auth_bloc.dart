@@ -70,7 +70,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final res = await _signOutUser(NoParams());
 
     res.fold(
-      (l) => {emit(AuthFailure(message: l.message))},
+      (l) {
+        emit(AuthFailure(message: l.message));
+      },
       (r) {
         _appUserCubit.signOut();
         emit(AuthSignOutSuccess());

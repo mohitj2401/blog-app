@@ -43,3 +43,5 @@ final class DeleteBlogEvent extends BlogEvent {
 
   DeleteBlogEvent({required this.id, required this.imageUrl});
 }
+
+final class UserLogout extends BlogEvent {}

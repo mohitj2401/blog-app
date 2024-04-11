@@ -37,6 +37,10 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
+          if (state is AuthSignOutSuccess) {
+            Navigator.pushAndRemoveUntil(
+                context, SignInPage.route(), (route) => false);
+          }
           if (state is AuthFailure) {
             showSnackBar(context, state.message);
           }
@@ -44,8 +48,14 @@ class _SignInPageState extends State<SignInPage> {
             Navigator.pushAndRemoveUntil(
                 context, BlogPage.route(), (route) => false);
           }
+
+          // if (state is AuthSignOutSuccess) {
+          //   Navigator.pushAndRemoveUntil(
+          //       context, SignInPage.route(), (route) => false);
+          // }
         },
         builder: (context, state) {
+          print(state);
           if (state is AuthLoading) {
             return const Loader();
           }

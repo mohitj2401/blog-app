@@ -71,6 +71,7 @@ class AuthRepositoryImp implements AuthRepository {
         return left((Failure("Not internet Connection")));
       }
       final result = await authDataSource.logoutUser();
+      // const result = true;
       if (result == null || !result) {
         return left(Failure("Login Expired"));
       }

@@ -72,5 +72,6 @@ Future<void> _initBlog() async {
         getBlogs: serviceLocator(),
         editBlog: serviceLocator(),
         deleteBlog: serviceLocator(),
+        appUserCubit: serviceLocator(),
       ));
 }
