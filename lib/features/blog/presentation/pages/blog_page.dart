@@ -1,6 +1,5 @@
 import 'package:blog_app/core/common/entity/user.dart';
 import 'package:blog_app/core/common/widgets/cubit/app_user/app_user_cubit.dart';
-import 'package:blog_app/core/common/widgets/loader.dart';
 import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/show_snackbar.dart';
 import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
@@ -11,6 +10,7 @@ import 'package:blog_app/features/blog/presentation/widgets/blog_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class BlogPage extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const BlogPage());
@@ -68,11 +68,13 @@ class _BlogPageState extends State<BlogPage> {
           if (state is BlogDeleteSuccess) {
             context.read<BlogBloc>().add(GetAllBlog());
           }
+          if (state is BlogLoading) {
+            EasyLoading.show(maskType: EasyLoadingMaskType.clear);
+          } else {
+            EasyLoading.dismiss();
+          }
         },
         builder: (context, state) {
-          if (state is BlogLoading) {
-            return const Loader();
-          }
           if (state is BlogDisplaySuccess) {
             return RefreshIndicator(
               onRefresh: () async {

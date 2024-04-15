@@ -1,4 +1,5 @@
 import 'package:blog_app/core/common/widgets/cubit/app_user/app_user_cubit.dart';
+import 'package:blog_app/core/common/widgets/splash_page.dart';
 import 'package:blog_app/core/theme/theme.dart';
 import 'package:blog_app/dependancies/init_dependancies.dart';
 import 'package:blog_app/features/auth/presentation/pages/signin_page.dart';
@@ -7,6 +8,7 @@ import 'package:blog_app/features/blog/presentation/pages/blog_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'features/auth/presentation/bloc/auth_bloc.dart';
@@ -47,18 +49,18 @@ class _MyAppState extends State<MyApp> {
       // debugShowMaterialGrid: false,
       title: 'Blog App',
       theme: AppTheme.darkTheme,
-      home: BlocSelector<AppUserCubit, AppUserState, bool>(
-        selector: (state) {
-          return (state is AppUserLoggedIn);
-        },
-        builder: (context, isLoggedin) {
-          if (isLoggedin) {
+      home: BlocBuilder<AppUserCubit, AppUserState>(
+        builder: (context, state) {
+          if (state is AppUserLoggedIn) {
             return const BlogPage();
-          } else {
+          }
+          if (state is AppUserLoggedOut) {
             return const SignInPage();
           }
+          return const SplashScreen();
         },
       ),
+      builder: EasyLoading.init(),
     );
   }
 }

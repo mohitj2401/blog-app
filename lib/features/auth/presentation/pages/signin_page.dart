@@ -1,4 +1,3 @@
-import 'package:blog_app/core/common/widgets/loader.dart';
 import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/show_snackbar.dart';
 import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
@@ -8,6 +7,7 @@ import 'package:blog_app/features/auth/presentation/widgets/auth_gradient_button
 import 'package:blog_app/features/blog/presentation/pages/blog_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class SignInPage extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const SignInPage());
@@ -48,6 +48,11 @@ class _SignInPageState extends State<SignInPage> {
             Navigator.pushAndRemoveUntil(
                 context, BlogPage.route(), (route) => false);
           }
+          if (state is AuthLoading) {
+            EasyLoading.show(maskType: EasyLoadingMaskType.clear);
+          } else {
+            EasyLoading.dismiss();
+          }
 
           // if (state is AuthSignOutSuccess) {
           //   Navigator.pushAndRemoveUntil(
@@ -55,10 +60,6 @@ class _SignInPageState extends State<SignInPage> {
           // }
         },
         builder: (context, state) {
-          print(state);
-          if (state is AuthLoading) {
-            return const Loader();
-          }
           return SingleChildScrollView(
             child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.8,
@@ -94,16 +95,15 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       AuthGradientButton(
                         buttonText: "Sign In",
-                        onPressed: () => {
-                          if (formKey.currentState!.validate())
-                            {
-                              context.read<AuthBloc>().add(AuthSignIn(
-                                    email:
-                                        emailTextEditingController.text.trim(),
-                                    password: passwordTextEditingController.text
-                                        .trim(),
-                                  ))
-                            }
+                        onPressed: () {
+                          print("clicked");
+                          if (formKey.currentState!.validate()) {
+                            context.read<AuthBloc>().add(AuthSignIn(
+                                  email: emailTextEditingController.text.trim(),
+                                  password:
+                                      passwordTextEditingController.text.trim(),
+                                ));
+                          }
                         },
                       ),
                       const SizedBox(

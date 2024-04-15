@@ -1,4 +1,3 @@
-import 'package:blog_app/core/common/widgets/loader.dart';
 import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/show_snackbar.dart';
 import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
@@ -9,6 +8,7 @@ import 'package:blog_app/features/blog/presentation/pages/blog_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class SignUpPage extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const SignUpPage());
@@ -50,11 +50,14 @@ class _SignUpPageState extends State<SignUpPage> {
             Navigator.pushAndRemoveUntil(
                 context, SignInPage.route(), (route) => false);
           }
+
+          if (state is AuthLoading) {
+            EasyLoading.show(maskType: EasyLoadingMaskType.clear);
+          } else {
+            EasyLoading.dismiss();
+          }
         },
         builder: (context, state) {
-          if (state is AuthLoading) {
-            return const Loader();
-          }
           return SingleChildScrollView(
             child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.8,

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:blog_app/core/common/widgets/cubit/app_user/app_user_cubit.dart';
-import 'package:blog_app/core/common/widgets/loader.dart';
 import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/pic_image.dart';
 import 'package:blog_app/core/utils/show_snackbar.dart';
@@ -12,6 +11,7 @@ import 'package:blog_app/features/blog/presentation/widgets/blog_editor.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class EditBlogPage extends StatefulWidget {
   static route(blog) => MaterialPageRoute(
@@ -95,11 +95,13 @@ class _EditBlogPageState extends State<EditBlogPage> {
             Navigator.pushAndRemoveUntil(
                 context, BlogPage.route(), (route) => false);
           }
+          if (state is BlogLoading) {
+            EasyLoading.show(maskType: EasyLoadingMaskType.clear);
+          } else {
+            EasyLoading.dismiss();
+          }
         },
         builder: (context, state) {
-          if (state is BlogLoading) {
-            return const Loader();
-          }
           return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(15.0),
