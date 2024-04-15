@@ -1,5 +1,4 @@
 import 'package:blog_app/core/common/entity/user.dart';
-import 'package:blog_app/core/common/widgets/cubit/app_user/app_user_cubit.dart';
 import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/show_snackbar.dart';
 import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
